@@ -3,6 +3,9 @@
   "author": "Eduard Gilmutdinov",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "8.x.x"
+  },
   "license": "MIT",
   "scripts": {
     "preinstall": "cd client && yarn install",
