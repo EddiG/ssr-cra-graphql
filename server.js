@@ -42,10 +42,11 @@ app.use(async (req, res) => {
     </ApolloProvider>
   );
   await getDataFromTree(app);
+  const state = { apollo: client.getInitialState() };
   const content = ReactDOMServer.renderToStaticMarkup(app);
   const helmet = Helmet.renderStatic();
   const html = ReactDOMServer.renderToStaticMarkup(
-    <Html content={content} helmet={helmet} assets={assets} />,
+    <Html content={content} helmet={helmet} assets={assets} state={state} />,
   );
   res.status(200);
   res.send(`<!doctype html>${html}`);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Html = ({ content, helmet, assets }) => {
+const Html = ({ content, helmet, assets, state }) => {
   return (
     <html lang="en">
       <head>
@@ -23,6 +23,14 @@ const Html = ({ content, helmet, assets }) => {
       <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__APOLLO_STATE__=${JSON.stringify(state).replace(
+              /</g,
+              '\\u003c',
+            )};`,
+          }}
+        />
         {assets.js &&
           assets.js.map((j, idx) => (
             <script key={idx} type="text/javascript" src={j} />
