@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Html = ({ content, helmet }) => {
+const Html = ({ content, helmet, assets }) => {
   return (
     <html lang="en">
       <head>
@@ -10,10 +10,14 @@ const Html = ({ content, helmet }) => {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <meta name="theme-color" content="#000000" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="manifest" href="../manifest.json" />
+        <link rel="shortcut icon" href="../favicon.ico" />
         {helmet.meta.toComponent()}
         {helmet.title.toComponent()}
+        {assets.css &&
+          assets.css.map((c, idx) => (
+            <link key={idx} href={c} rel="stylesheet" />
+          ))}
       </head>
 
       <body>

@@ -93,6 +93,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_helmet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_helmet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__client_src_Html__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__client_src_App__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__assets__ = __webpack_require__(10);
+
 
 
 
@@ -103,14 +105,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 const app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 
-// app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(__WEBPACK_IMPORTED_MODULE_0_express___default.a.static(__WEBPACK_IMPORTED_MODULE_1_path___default.a.resolve(__dirname, '../client/build'), { index: false }));
 
 app.use((req, res) => {
   res.status(200);
-  const content = __WEBPACK_IMPORTED_MODULE_3_react_dom_server___default.a.renderToString(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__client_src_App__["a" /* default */], null));
+  const content = __WEBPACK_IMPORTED_MODULE_3_react_dom_server___default.a.renderToStaticMarkup(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__client_src_App__["a" /* default */], null));
   const helmet = __WEBPACK_IMPORTED_MODULE_4_react_helmet___default.a.renderStatic();
-  const html = __WEBPACK_IMPORTED_MODULE_3_react_dom_server___default.a.renderToStaticMarkup(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__client_src_Html__["a" /* default */], { content: content, helmet: helmet }));
-  res.send(html);
+  const html = __WEBPACK_IMPORTED_MODULE_3_react_dom_server___default.a.renderToStaticMarkup(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__client_src_Html__["a" /* default */], { content: content, helmet: helmet, assets: __WEBPACK_IMPORTED_MODULE_7__assets__["a" /* default */] }));
+  res.send(`<!doctype html>${html}`);
   res.end();
 });
 
@@ -149,7 +151,7 @@ module.exports = require("react-dom/server");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
 
-const Html = ({ content, helmet }) => {
+const Html = ({ content, helmet, assets }) => {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     "html",
     { lang: "en" },
@@ -162,10 +164,11 @@ const Html = ({ content, helmet }) => {
         content: "width=device-width, initial-scale=1, shrink-to-fit=no"
       }),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", { name: "theme-color", content: "#000000" }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", { rel: "manifest", href: "/manifest.json" }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", { rel: "shortcut icon", href: "/favicon.ico" }),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", { rel: "manifest", href: "../manifest.json" }),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", { rel: "shortcut icon", href: "../favicon.ico" }),
+      helmet.meta.toComponent(),
       helmet.title.toComponent(),
-      helmet.meta.toComponent()
+      assets.css && assets.css.map((c, idx) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", { key: idx, href: c, rel: "stylesheet" }))
     ),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "body",
@@ -256,6 +259,41 @@ module.exports = __webpack_require__.p + "static/media/logo.5d5d9eef.svg";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "static/media/App.642d0b47.css";
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fs__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_fs__);
+
+
+const indexHtml = __WEBPACK_IMPORTED_MODULE_0_fs___default.a.readFileSync('client/build/index.html', {
+  encoding: 'utf-8'
+});
+
+const extract = (pattern, string) => {
+  const matches = [];
+  const re = new RegExp(pattern, 'g');
+  let match = re.exec(string);
+  while (match !== null) {
+    matches.push(match[1]);
+    match = re.exec(string);
+  }
+  return matches;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  css: extract('<link href="(.+?)" rel="stylesheet">', indexHtml),
+  js: extract('<script type="text/javascript" src="(.+?)"></script>', indexHtml)
+});
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
 
 /***/ })
 /******/ ]);
