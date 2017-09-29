@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { StaticRouter as Router } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import Html from './client/src/Html';
 import App from './client/src/App';
@@ -15,7 +16,11 @@ app.use(
 
 app.use((req, res) => {
   res.status(200);
-  const content = ReactDOMServer.renderToStaticMarkup(<App />);
+  const content = ReactDOMServer.renderToStaticMarkup(
+    <Router location={req.url} context={{}}>
+      <App />
+    </Router>,
+  );
   const helmet = Helmet.renderStatic();
   const html = ReactDOMServer.renderToStaticMarkup(
     <Html content={content} helmet={helmet} assets={assets} />,
