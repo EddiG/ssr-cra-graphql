@@ -5,6 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "prebuild": "cd client && yarn build",
     "build": "webpack --progress --config webpack.config.server.js",
     "start": "node build/server.js"
   },
