@@ -1,7 +1,8 @@
 import express from 'express';
 import path from 'path';
 import React from 'react';
-import ReactDOM from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server';
+import Helmet from 'react-helmet';
 import Html from './client/src/Html';
 import App from './client/src/App';
 
@@ -11,8 +12,12 @@ const app = express();
 
 app.use((req, res) => {
   res.status(200);
-  const content = ReactDOM.renderToString(<App />);
-  res.send(ReactDOM.renderToStaticMarkup(<Html content={content} />));
+  const content = ReactDOMServer.renderToString(<App />);
+  const helmet = Helmet.renderStatic();
+  const html = ReactDOMServer.renderToStaticMarkup(
+    <Html content={content} helmet={helmet} />,
+  );
+  res.send(html);
   res.end();
 });
 

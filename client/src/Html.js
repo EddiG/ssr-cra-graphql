@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Html = ({ content }) => {
+const Html = ({ content, helmet }) => {
   return (
     <html lang="en">
       <head>
@@ -12,7 +12,8 @@ const Html = ({ content }) => {
         <meta name="theme-color" content="#000000" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <title>React App</title>
+        {helmet.meta.toComponent()}
+        {helmet.title.toComponent()}
       </head>
 
       <body>
