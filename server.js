@@ -53,10 +53,8 @@ app.use(async (req, res) => {
   res.end();
 });
 
-const port = 8888;
+const port = process.env.PORT || 8888;
 
-app.set('port', port);
-
-app.listen(app.get('port'), () => {
-  console.log(`Server started on ${port} port`);
+app.listen(port, () => {
+  console.log(`Server listening on ${port} port`);
 });
