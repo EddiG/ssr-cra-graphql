@@ -5,9 +5,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "preinstall": "cd client && yarn install",
     "prebuild": "cd client && yarn build",
     "build": "webpack --progress --config webpack.config.server.js",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "heroku-postbuild": "yarn build"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
