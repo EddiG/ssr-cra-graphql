@@ -7,7 +7,8 @@ const withPerson = graphql(PERSON, {
   }),
   props: ({ data }) => ({
     name: data && data.person && data.person.name,
-    ...data,
+    loading: data.loading,
+    error: data.error,
   }),
 });
 
