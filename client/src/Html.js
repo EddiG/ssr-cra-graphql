@@ -23,6 +23,10 @@ const Html = ({ content, helmet, assets }) => {
       <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
+        {assets.js &&
+          assets.js.map((j, idx) => (
+            <script key={idx} type="text/javascript" src={j} />
+          ))}
       </body>
     </html>
   );
