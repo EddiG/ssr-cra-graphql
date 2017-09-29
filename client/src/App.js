@@ -20,13 +20,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
+        <div className="App-intro">
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
+          <Link to="/person/1">Person 1</Link>
+          <Link to="/person/2">Person 2</Link>
+          <Link to="/person/3">Person 3</Link>
           <Switch>
             {routes.map(route => <Route key={route.name} {...route} />)}
           </Switch>
-        </p>
+        </div>
       </div>
     );
   }
