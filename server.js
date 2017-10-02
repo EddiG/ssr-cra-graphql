@@ -11,7 +11,7 @@ import {
   ApolloProvider,
   getDataFromTree,
 } from 'react-apollo';
-import Html from './client/src/Html';
+import Html from './Html';
 import App from './client/src/App';
 import assets from './assets';
 

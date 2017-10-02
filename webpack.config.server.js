@@ -1,3 +1,4 @@
+const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
@@ -5,9 +6,9 @@ module.exports = {
   output: {
     filename: './build/server.js',
   },
-  // resolve: {
-  //   modules: ['client/src', 'node_modules'],
-  // },
+  resolve: {
+    modules: [path.resolve(__dirname, 'client/src'), 'node_modules'],
+  },
   target: 'node',
   node: {
     __dirname: false,

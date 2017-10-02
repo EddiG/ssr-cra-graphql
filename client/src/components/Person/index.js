@@ -1,4 +1,4 @@
 import Person from './Person';
-import withPerson from '../../graphql/persons/withPerson';
+import { withPerson } from 'gql/persons';
 
 export default withPerson(Person);
