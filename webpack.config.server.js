@@ -7,7 +7,7 @@ module.exports = {
     filename: './build/server.js',
   },
   resolve: {
-    modules: [path.resolve(__dirname, 'client/src'), 'node_modules'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   target: 'node',
   node: {

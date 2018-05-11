@@ -12,14 +12,12 @@ import {
   getDataFromTree,
 } from 'react-apollo';
 import Html from './Html';
-import App from './client/src/App';
+import App from './src/App';
 import assets from './assets';
 
 const app = express();
 
-app.use(
-  express.static(path.resolve(__dirname, '../client/build'), { index: false }),
-);
+app.use(express.static(path.resolve(__dirname, '../build'), { index: false }));
 
 app.use(async (req, res) => {
   const client = new ApolloClient({

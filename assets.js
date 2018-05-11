@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const indexHtml = fs.readFileSync('client/build/index.html', {
+const indexHtml = fs.readFileSync('build/index.html', {
   encoding: 'utf-8',
 });
 
