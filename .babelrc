@@ -1,13 +1,25 @@
 {
-  "presets": [
-    "react",
-    [
-      "env",
-      {
-        "targets": {
-          "node": "current"
-        }
-      }
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "entry",
+                "targets": {
+                    "node": true
+                }
+            }
+        ],
+        "@babel/preset-react"
+    ],
+    "plugins": [
+          [
+            "@babel/plugin-transform-runtime",
+            {
+                "corejs": 2,
+                "helpers": true,
+                "regenerator": true,
+                "useESModules": false
+            }
+        ]
     ]
-  ]
 }

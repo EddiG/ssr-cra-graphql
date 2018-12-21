@@ -7,7 +7,7 @@ const About = () => (
       <title>About</title>
       <meta name="description" content="The page about ..." />
     </Helmet>
-    About Page
+    <br/><p>React with apollo and SSR with babel and webpack is awesome !!!</p>
   </div>
 );
 

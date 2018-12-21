@@ -1,15 +1,15 @@
-import { ApolloClient, createNetworkInterface } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const apolloClient = new ApolloClient({
-  initialState: window.__APOLLO_STATE__,
-  ssrForceFetchDelay: 100,
-  networkInterface: createNetworkInterface({
-    uri: 'https://31zrkwkkv.lp.gql.zone/graphql',
-    opts: {
-      credentials: 'include',
-    },
+  // By default, this client will send queries to the
+  //  `/graphql` endpoint on the same host
+  // Pass the configuration option { uri: YOUR_GRAPHQL_API_URL } to the `HttpLink` to connect
+  link: new HttpLink({
+    uri: 'https://fakerql.com/graphql'
   }),
-  queryDeduplication: true,
+  cache: new InMemoryCache(),
 });
 
 export default apolloClient;

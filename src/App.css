@@ -22,6 +22,13 @@
   font-size: large;
 }
 
+.App-links {
+  font-size: x-large;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
