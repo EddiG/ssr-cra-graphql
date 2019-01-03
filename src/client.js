@@ -4,10 +4,7 @@ const apolloClient = new ApolloClient({
   initialState: window.__APOLLO_STATE__,
   ssrForceFetchDelay: 100,
   networkInterface: createNetworkInterface({
-    uri: 'https://31zrkwkkv.lp.gql.zone/graphql',
-    opts: {
-      credentials: 'include',
-    },
+    uri: 'https://m5j9784k8j.sse.codesandbox.io',
   }),
   queryDeduplication: true,
 });

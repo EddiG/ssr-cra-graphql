@@ -23,13 +23,7 @@ app.use(async (req, res) => {
   const client = new ApolloClient({
     ssrMode: true,
     networkInterface: createNetworkInterface({
-      uri: 'https://31zrkwkkv.lp.gql.zone/graphql',
-      opts: {
-        credentials: 'include',
-        headers: {
-          cookie: req.header('Cookie'),
-        },
-      },
+      uri: 'https://m5j9784k8j.sse.codesandbox.io',
     }),
   });
   const app = (
