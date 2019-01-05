@@ -33,7 +33,7 @@ const Html = ({ content, helmet, assets, state }) => {
         />
         {assets.js &&
           assets.js.map((j, idx) => (
-            <script key={idx} type="text/javascript" src={j} />
+            <script key={idx} src={j} />
           ))}
       </body>
     </html>

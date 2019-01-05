@@ -7,6 +7,8 @@ import './index.css';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
+console.log('HYDRATING')
+
 ReactDOM.hydrate(
   <ApolloProvider client={client}>
     <Router>
