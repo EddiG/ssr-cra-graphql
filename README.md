@@ -3,6 +3,8 @@ This is the starting kit for using [creat-react-app](https://github.com/facebook
 
 ## How to use
 - `yarn install` for installing dependencies
+### Backend preparing
+Currently we use the endpoint created at [Codesandbox](https://codesandbox.io/s/m5j9784k8j). It goes down if it's not in use, that means you have to run it again by opening that [sandbox](https://m5j9784k8j.sse.codesandbox.io/) if you want to `start` the project. 
 ### Developing
 - `yarn start:dev` for running the development server (without SSR support)
 ### Production
