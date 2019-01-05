@@ -7,7 +7,7 @@ import './index.css';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
-// The hot reloading exists only in the development environment
+// The hot reloading doesn't exist in production environment
 const render = module.hot ? ReactDOM.render : ReactDOM.hydrate
 
 render(
