@@ -1,12 +1,13 @@
-import { ApolloClient, createNetworkInterface } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const apolloClient = new ApolloClient({
-  initialState: window.__APOLLO_STATE__,
   ssrForceFetchDelay: 100,
-  networkInterface: createNetworkInterface({
+  link: new HttpLink({
     uri: 'https://m5j9784k8j.sse.codesandbox.io',
   }),
-  queryDeduplication: true,
+  cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
 });
 
 export default apolloClient;

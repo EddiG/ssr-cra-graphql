@@ -7,9 +7,10 @@ import './index.css';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
-console.log('HYDRATING')
+// The hot reloading exists only in the development environment
+const render = module.hot ? ReactDOM.render : ReactDOM.hydrate
 
-ReactDOM.hydrate(
+render(
   <ApolloProvider client={client}>
     <Router>
       <App />
