@@ -7,7 +7,10 @@ import './index.css';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.hydrate(
+// The hot reloading doesn't exist in production environment
+const render = module.hot ? ReactDOM.render : ReactDOM.hydrate
+
+render(
   <ApolloProvider client={client}>
     <Router>
       <App />

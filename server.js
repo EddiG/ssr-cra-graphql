@@ -5,9 +5,10 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import Helmet from 'react-helmet';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import {
-  ApolloClient,
-  createNetworkInterface,
   ApolloProvider,
   getDataFromTree,
 } from 'react-apollo';
@@ -22,15 +23,10 @@ app.use(express.static(path.resolve(__dirname, '../build'), { index: false }));
 app.use(async (req, res) => {
   const client = new ApolloClient({
     ssrMode: true,
-    networkInterface: createNetworkInterface({
-      uri: 'https://31zrkwkkv.lp.gql.zone/graphql',
-      opts: {
-        credentials: 'include',
-        headers: {
-          cookie: req.header('Cookie'),
-        },
-      },
+    link: new HttpLink({
+      uri: 'https://m5j9784k8j.sse.codesandbox.io',
     }),
+    cache: new InMemoryCache(),
   });
   const app = (
     <ApolloProvider client={client}>
@@ -39,8 +35,10 @@ app.use(async (req, res) => {
       </Router>
     </ApolloProvider>
   );
+  // Executes all graphql queries for the current state of application
   await getDataFromTree(app);
-  const state = { apollo: client.getInitialState() };
+  // Extracts apollo client cache 
+  const state = client.extract();
   const content = ReactDOMServer.renderToStaticMarkup(app);
   const helmet = Helmet.renderStatic();
   const html = ReactDOMServer.renderToStaticMarkup(

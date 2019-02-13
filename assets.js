@@ -18,7 +18,7 @@ const extract = (pattern, string) => {
 export default {
   css: extract('<link href="(.+?)" rel="stylesheet">', indexHtml),
   js: extract(
-    '<script type="text/javascript" src="(.+?)"></script>',
+    '<script src="(.+?)"></script>',
     indexHtml,
   ),
 };
