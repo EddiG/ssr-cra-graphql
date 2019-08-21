@@ -1,5 +1,14 @@
-import React from 'react';
+import React from "react";
+import { usePerson } from "data/gql/persons";
 
-const Person = ({ name }) => <div>Name: {name}</div>;
+const Person = ({ id }) => {
+  const { loading, person } = usePerson(id);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return <div>Name: {person.name}</div>;
+};
 
 export default Person;
