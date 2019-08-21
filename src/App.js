@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
-import Helmet from 'react-helmet';
-import logo from './logo.svg';
-import './App.css';
-import routes from './routes';
+import React, { Component } from "react";
+import { Link, Switch, Route } from "react-router-dom";
+import Helmet from "react-helmet";
+import logo from "./logo.svg";
+import "./App.css";
+import routes from "./routes";
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
           <title>My Title</title>
           <meta
             name="description"
-            content="The React with Server Side Rendering"
+            content="React app with Server Side Rendering"
           />
         </Helmet>
         <header className="App-header">
@@ -26,10 +26,13 @@ class App extends Component {
           <Link to="/person/1">Person 1</Link>
           <Link to="/person/2">Person 2</Link>
           <Link to="/person/3">Person 3</Link>
-          <Switch>
-            {routes.map(route => <Route key={route.name} {...route} />)}
-          </Switch>
         </div>
+        <br/>
+        <Switch>
+          {routes.map(route => (
+            <Route key={route.name} {...route} />
+          ))}
+        </Switch>
       </div>
     );
   }

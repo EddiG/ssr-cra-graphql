@@ -19,6 +19,8 @@
 }
 
 .App-intro {
+  display: flex;
+  justify-content: space-around;
   font-size: large;
 }
 
