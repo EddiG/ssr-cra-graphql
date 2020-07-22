@@ -8,6 +8,10 @@ const Person = ({ id }) => {
     return <div>Loading...</div>;
   }
 
+  if (!person) {
+    return <div>Sorry, he wasn't found :(</div>;
+  }
+
   return <div>Name: {person.name}</div>;
 };
 
